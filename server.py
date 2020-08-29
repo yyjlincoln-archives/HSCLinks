@@ -1,5 +1,5 @@
 import mongoengine as me
-from flask import Flask, redirect, request, jsonify
+from flask import Flask, redirect, request, jsonify, send_file
 from flask_cors import CORS
 import secrets
 
@@ -12,6 +12,11 @@ class Redirection(me.Document):
     path = me.StringField()
     to = me.StringField()
     password = me.StringField()
+
+@app.route('/')
+def IndexPage():
+    # Sends a file. This file must contain all css / javascript.
+    return send_file('index.html')
 
 @app.route('/<path:link>')
 def rd(link):
