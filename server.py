@@ -83,5 +83,3 @@ def rd(link):
                 })
 
         return '',404
-
-app.run()
