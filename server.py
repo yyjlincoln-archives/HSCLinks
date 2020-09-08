@@ -53,7 +53,7 @@ def rd(link):
             else:
                 if password==q.password:
                     try:
-                        q.to=link
+                        q.to=to
                         q.save()
                         return jsonify({
                             'code':0,
