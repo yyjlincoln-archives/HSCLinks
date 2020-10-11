@@ -94,7 +94,7 @@ def rd(link):
                 })
         if q.disabled == True:
             # return 'Access is denied as the link you are trying to access is inactive. If you believe this is an error, please contact the person who put up this link.', 403
-            return '', 403
+            return send_file('inactive.html'), 403
 
         return redirect(q.to)
     else:
@@ -115,4 +115,4 @@ def rd(link):
                     'message': 'Unable to save. Database error.'
                 })
 
-        return '', 404
+        return send_file('notfound.html'), 404
