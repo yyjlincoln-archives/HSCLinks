@@ -23,6 +23,16 @@ def IndexPage():
     return send_file('index.html')
 
 
+@app.route('/docs/<path:doc>')
+def GoogleDocsRedirection(doc):
+    # Support for Google Docs Redirection, which is handy for Google Classroom
+    return redirect('https://docs.google.com/document/d/'+doc)
+
+@app.route('/docs')
+def GoogleDocsRedirection_Home():
+    # Witten here for protection purposes
+    return redirect('https://docs.google.com/')
+
 @app.route('/<path:link>')
 def rd(link):
     to = request.values.get('to')
