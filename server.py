@@ -2,8 +2,13 @@ import mongoengine as me
 from flask import Flask, redirect, request, jsonify, send_file
 from flask_cors import CORS
 import secrets
+import json
 
-me.connect('redirectutils')
+with open("secrets.json", "r") as f:
+    secrets = json.load(f)
+    assert 'dbURL' in secrets
+    me.connect(host=secrets['dbURL'])
+
 app = Flask(__name__)
 CORS(app)
 
@@ -28,10 +33,12 @@ def GoogleDocsRedirection(doc):
     # Support for Google Docs Redirection, which is handy for Google Classroom
     return redirect('https://docs.google.com/document/d/'+doc)
 
+
 @app.route('/docs')
 def GoogleDocsRedirection_Home():
     # Witten here for protection purposes
     return redirect('https://docs.google.com/')
+
 
 @app.route('/<path:link>')
 def rd(link):
